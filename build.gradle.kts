@@ -15,7 +15,7 @@ repositories {
     }
 }
 
-group = "org.example"
+group = "info.novatec"
 version = "1.0-SNAPSHOT"
 description = "camunda-bpmn-documentation-generator"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
