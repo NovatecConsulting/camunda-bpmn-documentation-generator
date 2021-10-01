@@ -5,7 +5,7 @@
 plugins {
     java
     `maven-publish`
-    kotlin("<...>") version "1.5.31"
+    id("org.jetbrains.kotlin.jvm") version "1.5.31"
 }
 
 repositories {
