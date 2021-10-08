@@ -5,7 +5,9 @@
 plugins {
     java
     `maven-publish`
+    id("com.diffplug.spotless") version "5.14.0"
     id("org.jetbrains.kotlin.jvm") version "1.5.31"
+    id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
 }
 
 repositories {
@@ -23,5 +25,15 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
+    }
+}
+
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    kotlin {
+        ktlint("0.38.0")
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint()
     }
 }
