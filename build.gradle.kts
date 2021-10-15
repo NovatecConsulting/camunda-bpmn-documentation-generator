@@ -6,6 +6,7 @@ plugins {
     java
     `maven-publish`
     id("com.diffplug.spotless") version "5.14.0"
+    id("com.liferay.maven.plugin.builder") version "1.2.8"
     id("org.jetbrains.kotlin.jvm") version "1.5.31"
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
 }
@@ -22,10 +23,28 @@ version = "1.0-SNAPSHOT"
 description = "camunda-bpmn-documentation-generator"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
+dependencies {
+    implementation("org.apache.maven:maven-plugin-api:3.8.1")
+    implementation("org.apache.maven:maven-core:3.8.1")
+    compileOnly("org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.1")
+}
+
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
     }
+}
+
+tasks.named("buildPluginDescriptor") {
+    setProperty("sourceDir", "src/main/kotlin")
+    setProperty("classesDir", "build/classes/kotlin/main")
+    setProperty("goalPrefix", "cbdg")
+    setProperty("pomArtifactId", project.description)
+    setProperty("pomVersion", project.version)
+}
+
+tasks.named("build") {
+    dependsOn("buildPluginDescriptor")
 }
 
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
