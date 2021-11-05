@@ -29,7 +29,7 @@ dependencies {
     implementation("org.apache.maven:maven-core:3.8.1")
     compileOnly("org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.1")
     // https://mvnrepository.com/artifact/org.freemarker/freemarker
-    implementation(group="org.freemarker", name="freemarker", version="2.3.31")
+    implementation(group = "org.freemarker", name = "freemarker", version = "2.3.31")
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.5.30")
 }
 
