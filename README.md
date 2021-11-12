@@ -14,7 +14,7 @@ The follow gradle task generates the maven descriptor into directory *src/main/r
 
     ./gradlew buildPluginDescriptor
 
-Publish to local maven repository for the using in a maven project    
+Publish to local maven repository for usage in a maven project    
 
     ./gradlew publishToMavenLocal
 
