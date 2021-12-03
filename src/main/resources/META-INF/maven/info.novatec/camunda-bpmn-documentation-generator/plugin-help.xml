@@ -47,7 +47,7 @@
 			<configuration>
 				<camundaBpmnDir implementation="java.io.File" default-value="${project.basedir}/src/main/resources/bpmn">${camundaBpmnDir}</camundaBpmnDir>
 				<resultOutputDir implementation="java.io.File" default-value="${project.build.directory}/cbdg/html">${resultOutputDir}</resultOutputDir>
-				<templateFile implementation="java.io.File" default-value="${project.basedir}/src/main/resources/templates/basic.ftl">${templateFile}</templateFile>
+				<templateFile implementation="java.io.File" default-value="${project.build.directory}/classes/templates/default.ftl">${templateFile}</templateFile>
 			</configuration>
 		</mojo>
 	</mojos>
