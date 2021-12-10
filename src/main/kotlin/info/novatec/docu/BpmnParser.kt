@@ -1,6 +1,7 @@
 package info.novatec.docu
 
-import models.BpmnObject
+import info.novatec.cbdg.models.BpmnObject
+import info.novatec.cbdg.models.BpmnProcess
 import org.camunda.bpm.model.bpmn.Bpmn
 import org.camunda.bpm.model.bpmn.instance.Process
 import java.io.File
@@ -12,7 +13,7 @@ object BpmnParser {
         val model = bpmnModelInstance.model
         val process: Process = bpmnModelInstance.getModelElementsByType(model.getType(Process::class.java)).stream()
             .findFirst().get() as Process
-        return BpmnObject(
+        return BpmnProcess(
             process.id,
             process.name,
             process.camundaVersionTag,

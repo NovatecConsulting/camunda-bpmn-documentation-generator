@@ -1,6 +1,8 @@
+package info.novatec.cbdg
+
 import freemarker.template.Configuration
 import freemarker.template.TemplateExceptionHandler
-import models.BpmnObject
+import info.novatec.cbdg.models.BpmnObject
 import java.io.FileWriter
 import java.nio.file.FileAlreadyExistsException
 import java.util.Locale
@@ -28,7 +30,7 @@ object FreeMarkerService {
         config: (Configuration.() -> Unit)? = null
     ) {
         // Null-checks the config function in case there is no additional configuration needed
-        val oldConfig = config?.let(FreeMarkerService::configure) ?: this.cfg
+        val oldConfig = config?.let(FreeMarkerService::configure) ?: cfg
         val filePath = Path(outputPath)
         try {
             filePath.parent.createDirectories()
@@ -40,7 +42,7 @@ object FreeMarkerService {
         FileWriter(filePath.toFile()).use {
             cfg.getTemplate(templateName).process(mapOf("bpmn" to input), it)
         }
-        this.cfg = oldConfig
+        cfg = oldConfig
     }
 
     /**
@@ -49,9 +51,9 @@ object FreeMarkerService {
      * @return the previous configuration.
      */
     private fun configure(configurationLambda: Configuration.() -> Unit): Configuration {
-        val originalConfig = this.cfg
-        this.cfg = createDefaultConfiguration()
-        this.cfg.configurationLambda()
+        val originalConfig = cfg
+        cfg = createDefaultConfiguration()
+        cfg.configurationLambda()
         return originalConfig
     }
 

@@ -1,7 +1,7 @@
 package info.novatec.cbdg.plugin
 
-import FreeMarkerService
-import models.BpmnObject
+import info.novatec.cbdg.FreeMarkerService
+import info.novatec.cbdg.models.elements.Task
 import org.apache.maven.plugin.AbstractMojo
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
@@ -24,7 +24,7 @@ class GenerateMojo : AbstractMojo() {
         camundaBpmnDir.listFiles()?.forEach {
             log.info("Generating documentation for file ${it.absolutePath}")
             log.info("Using template ${templateFile.absolutePath}")
-            val bpmnObject = BpmnObject(id = "test-id", it.name, "0.9.0", "Eine ellenlange Daokumentation")
+            val bpmnObject = Task(id = "test-id", it.name, "0.9.0", "Eine ellenlange Daokumentation")
             FreeMarkerService.writeTemplate(
                 bpmnObject,
                 templateFile.name,
