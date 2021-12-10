@@ -24,13 +24,18 @@ description = "camunda-bpmn-documentation-generator"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-    implementation("org.apache.maven:maven-plugin-api:3.8.1")
-    implementation("org.apache.maven:maven-core:3.8.1")
+    implementation("org.apache.maven:maven-plugin-api:3.8.4")
+    implementation("org.apache.maven:maven-core:3.8.4")
     implementation("org.camunda.bpm.model:camunda-bpmn-model:7.16.0")
     compileOnly("org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.1")
     // https://mvnrepository.com/artifact/org.freemarker/freemarker
     implementation(group = "org.freemarker", name = "freemarker", version = "2.3.31")
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.5.30")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testImplementation("org.apache.maven:maven-compat:3.8.4")
+    testImplementation("org.apache.maven.plugin-testing:maven-plugin-testing-harness:3.3.0")
 }
 
 publishing {
@@ -49,6 +54,10 @@ tasks.named("buildPluginDescriptor") {
 
 tasks.named("build") {
     dependsOn("buildPluginDescriptor")
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
