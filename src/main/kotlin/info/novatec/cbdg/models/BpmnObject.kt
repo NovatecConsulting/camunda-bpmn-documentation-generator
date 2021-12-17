@@ -6,9 +6,16 @@ package info.novatec.cbdg.models
  * @param name the name of the BPMN object, not necessarily equal to the ID.
  * @param version the version tag of the BPMN object
  * @param documentation the element documentation of the BPMN object
+ * @param image the name of the generated image of the BPMN process.
  */
-abstract class BpmnObject(val id: String, val name: String, val version: String, val documentation: String? = null) {
+abstract class BpmnObject(
+    val id: String,
+    val name: String,
+    val version: String,
+    val documentation: String? = null,
+    val image: String
+) {
     override fun toString(): String {
-        return "${javaClass.name}[id=$id, name=$name, version=$version, documentation=$documentation]"
+        return "${javaClass.name}[id=$id, name=$name, version=$version, documentation=$documentation, image=$image]"
     }
 }

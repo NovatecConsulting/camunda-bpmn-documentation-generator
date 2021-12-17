@@ -1,8 +1,8 @@
 <html>
 <style>
-  table, th, td {
-    border: 1px solid black;
-  }
+    table, th, td {
+        border: 1px solid black;
+    }
 </style>
 <head>
     <title>${bpmn.name}</title>
@@ -10,6 +10,7 @@
 <body>
 <h1>${bpmn.name}</h1>
 <p>${bpmn.documentation}</p>
+<p>${bpmn.image}</p>
 
 <table>
     <thead>
@@ -19,12 +20,12 @@
     <th>Documentation</th>
     </thead>
     <#list bpmn.elements as item>
-    <tr>
-        <td>${item.id}</td>
-        <td>${item.name}</td>
-        <td>${item.version}</td>
-        <td>${item.documentation}</td>
-    </tr>
+        <tr>
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.version}</td>
+            <td>${item.documentation}</td>
+        </tr>
     </#list>
 </table>
 </body>
