@@ -14,3 +14,4 @@ out/
 .factorypath
 
 indexes/
+**/node_modules

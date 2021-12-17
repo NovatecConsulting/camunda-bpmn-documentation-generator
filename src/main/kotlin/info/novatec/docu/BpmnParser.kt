@@ -8,7 +8,7 @@ import java.io.File
 
 object BpmnParser {
 
-    fun parseBpmnFile(bpmnFile: File): BpmnObject {
+    fun parseBpmnFile(bpmnFile: File, bpmnImagePath: String): BpmnObject {
         val bpmnModelInstance = Bpmn.readModelFromFile(bpmnFile)
         val model = bpmnModelInstance.model
         val process: Process = bpmnModelInstance.getModelElementsByType(model.getType(Process::class.java)).stream()
@@ -17,7 +17,8 @@ object BpmnParser {
             process.id,
             process.name,
             process.camundaVersionTag,
-            process.documentations.stream().findFirst().orElse(null)?.textContent.toString()
+            process.documentations.stream().findFirst().orElse(null)?.textContent.toString(),
+            bpmnImagePath
         )
     }
 }

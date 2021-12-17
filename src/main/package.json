@@ -1,0 +1,7 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "dependencies": {
+    "bpmn-to-image": "^0.6.1"
+  }
+}
