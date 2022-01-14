@@ -17,13 +17,26 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
           java-version: '14'
           cache: 'gradle'
+      - name: Git Checkout main project
+        uses: actions/checkout@v2
+        with:
+          path: main
+      - name: git checkout test project
+        uses: actions/checkout@v2
+        with:
+          repository: ahsNT/cbdg-maven-test
+          path: test-project
       - name: Clean and Build with Gradle Wrapper
-        run: ./gradlew clean build
+        run: ./main/gradlew clean build
+      - name: build and upload maven plugin
+        run: ./main/gradlew buildPluginDescriptor publishToMavenLocal
+      - name: change to test project
+        run: cd test-project
+      - name: build test project
+        run: mvn clean install
