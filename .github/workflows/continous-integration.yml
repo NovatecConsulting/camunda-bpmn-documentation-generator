@@ -17,13 +17,25 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: Git Checkout
+      - name: Git Checkout main project
         uses: actions/checkout@v2
+        with:
+          path: camunda-bpmn-documentation-generator
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
           java-version: '14'
           cache: 'gradle'
-      - name: Clean and Build with Gradle Wrapper
-        run: ./gradlew clean build
+      - name: clean and build camunda-bpmn-documentation-generator plugin
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: clean spotlessCheck build buildPluginDescriptor publishToMavenLocal
+          build-root-directory: ./camunda-bpmn-documentation-generator
+      - name: git checkout test project
+        uses: actions/checkout@v2
+        with:
+          repository: NovatecConsulting/cbdg-maven-test
+          path: cbdg-maven-test
+      - name: build cbdg-maven-test
+        run: cd ./cbdg-maven-test; mvn clean install
