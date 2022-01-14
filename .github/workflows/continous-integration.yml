@@ -19,16 +19,23 @@ jobs:
     steps:
       - name: Git Checkout main project
         uses: actions/checkout@v2
+        with:
+          path: main
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
           java-version: '14'
           cache: 'gradle'
-      - name: Clean and Build with Gradle Wrapper
-        run: ./gradlew clean build
-      - name: build and upload maven plugin
-        run: ./gradlew buildPluginDescriptor publishToMavenLocal
+
+      - uses: gradle/gradle-build-action@v2
+        with:
+          arguments: clean build buildPluginDescriptor publishToMavenLocal
+          build-root-directory: ./main
+#      - name: Clean and Build with Gradle Wrapper
+#        run: ./gradlew clean build
+#      - name: build and upload maven plugin
+#        run: ./gradlew buildPluginDescriptor publishToMavenLocal
       - name: git checkout test project
         uses: actions/checkout@v2
         with:
