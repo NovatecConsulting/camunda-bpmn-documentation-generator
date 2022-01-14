@@ -26,6 +26,7 @@ jobs:
         with:
           repository: ahsNT/cbdg-maven-test
           path: test-project
+      - run: ls -al
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
