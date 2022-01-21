@@ -39,7 +39,7 @@ jobs:
       - name: git checkout test project
         uses: actions/checkout@v2
         with:
-          repository: ahsNT/cbdg-maven-test
+          repository: NovatecConsulting/cbdg-maven-test
           path: test-project
       - name: build test project
-        run: cd ./test-project; mvn clean install
+        run: cd ./test-project; mvn clean install -PallTests
