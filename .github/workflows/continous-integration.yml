@@ -42,4 +42,4 @@ jobs:
           repository: NovatecConsulting/cbdg-maven-test
           path: test-project
       - name: build test project
-        run: cd ./test-project; mvn clean install -PallTests
+        run: cd ./test-project; mvn clean install -PallTests spotless:check
