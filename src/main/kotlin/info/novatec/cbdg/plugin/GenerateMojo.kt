@@ -1,7 +1,7 @@
 package info.novatec.cbdg.plugin
 
 import info.novatec.cbdg.FreeMarkerService
-import info.novatec.cbdg.models.elements.Task
+import info.novatec.docu.BpmnParser
 import org.apache.maven.plugin.AbstractMojo
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
@@ -14,7 +14,7 @@ class GenerateMojo : AbstractMojo() {
 
     /**
      * Default usage is the templates/default.ftl from Jar-File.
-     * To use it, it will be create in Build-Dir of the target project the empty file default.ftl
+     * To use it, it will be created in Build-Dir of the target project the empty file default.ftl
      * and fill it with the stream of templates/default.ftl from Jar-File
      */
     @Parameter(property = "templateFile", defaultValue = "\${project.build.directory}/classes/templates/default.ftl")
@@ -34,7 +34,7 @@ class GenerateMojo : AbstractMojo() {
         camundaBpmnDir.listFiles()?.forEach {
             log.info("Generating documentation for file ${it.absolutePath}")
             log.info("Using template ${templateFile.absolutePath}")
-            val bpmnObject = Task(id = "test-id", it.name, "0.9.0", "Eine ellenlange Daokumentation")
+            val bpmnObject = BpmnParser.parseBpmnFile(it, "")
             FreeMarkerService.writeTemplate(
                 bpmnObject,
                 templateFile.name,
