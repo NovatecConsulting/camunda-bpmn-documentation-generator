@@ -1,10 +1,11 @@
-package info.novatec.docu
+package info.novatec.docu.parser.main
 
 import info.novatec.cbdg.models.BpmnObject
 import info.novatec.cbdg.models.BpmnProcess
 import info.novatec.cbdg.models.elements.EndEvent
 import info.novatec.cbdg.models.elements.StartEvent
 import info.novatec.cbdg.models.enums.EventEnum
+import info.novatec.docu.parser.element.CallActivityParser.parseToCallActivityList
 import org.camunda.bpm.model.bpmn.Bpmn
 import org.camunda.bpm.model.bpmn.instance.EventDefinition
 import org.camunda.bpm.model.bpmn.instance.FlowElement
@@ -34,7 +35,8 @@ object BpmnParser {
             process.name,
             process.camundaVersionTag,
             process.documentations.stream().findFirst().orElse(null)?.textContent.toString(),
-            bpmnImagePath
+            bpmnImagePath,
+            parseToCallActivityList(process)
         )
 
         result.elements.addAll(determineStartEvents(process))
