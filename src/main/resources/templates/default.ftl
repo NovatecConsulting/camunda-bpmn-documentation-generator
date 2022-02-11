@@ -1,20 +1,34 @@
 <html>
-<head>
-    <title>Default-Template</title>
-</head>
-<body>
-This is a default template for the Freemarker integration. <br>
-It should contain the id and name of a bpmn object.
-
-<ul>
-    <li>ID: ${bpmn.id}</li>
-    <li>Name: ${bpmn.name}</li>
-    <li>Version: ${bpmn.version}</li>
-    <li>Documentation: ${bpmn.documentation}</li>
-</ul>
-
-<#if bpmn.image??><img src="./images/${bpmn.image}"></#if>
-
-
-</body>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <head>
+        <title>${bpmn.name}</title>
+    </head>
+    <body>
+        <h1>${bpmn.name}</h1>
+        <p>Version: ${bpmn.version}</p>
+        <p>Documentation: ${bpmn.documentation}</p>
+        <div><#if bpmn.image??><img src="./images/${bpmn.image}"></#if></div>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Documentation</th>
+                <th>Type</th>
+            </thead>
+            <#list bpmn.elements as item>
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.version}</td>
+                    <td>${item.documentation}</td>
+                    <td>${item.type}</td>
+                </tr>
+            </#list>
+        </table>
+    </body>
 </html>
