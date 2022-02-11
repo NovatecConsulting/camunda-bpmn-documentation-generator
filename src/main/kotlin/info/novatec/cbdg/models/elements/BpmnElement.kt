@@ -7,4 +7,4 @@ abstract class BpmnElement(
     name: String,
     version: String,
     documentation: String?
-) : BpmnObject(id, name, version, documentation, image = "")
+) : BpmnObject(id, name, version, documentation, image = "", listOf())

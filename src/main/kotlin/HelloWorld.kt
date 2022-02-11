@@ -1,11 +1,12 @@
+import info.novatec.cbdg.FreeMarkerService
 import info.novatec.cbdg.helper.CommandLineHelper.Companion.runCommand
-import info.novatec.docu.BpmnParser
+import info.novatec.docu.parser.main.BpmnParser
 import java.io.File
 
 fun main() {
-    val bpmnPath = "src/main/resources/bpmn/"
-    val bpmnFile = "diagram1.bpmn"
-    val bpmnFileAsPng = "diagram1.png"
+    val bpmnPath = "src/test/resources/bpmn/"
+    val bpmnFile = "TestDiagram.bpmn"
+    val bpmnFileAsPng = "TestDiagram.png"
 
     val bpmnObject = BpmnParser.parseBpmnFile(
         File(bpmnPath + bpmnFile),
@@ -20,4 +21,8 @@ fun main() {
     println(bpmnObject.version)
     println(bpmnObject.documentation)
     println(bpmnObject.image)
+
+    FreeMarkerService.writeTemplate(bpmnObject, "default.ftl", outputPath = "out/reports/processGeneratedOutput.html") {
+        setDirectoryForTemplateLoading(File("./src/main/resources/templates/"))
+    }
 }

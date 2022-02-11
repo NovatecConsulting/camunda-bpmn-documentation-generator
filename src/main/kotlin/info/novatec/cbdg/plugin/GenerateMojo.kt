@@ -1,7 +1,7 @@
 package info.novatec.cbdg.plugin
 
 import info.novatec.cbdg.FreeMarkerService
-import info.novatec.docu.BpmnParser
+import info.novatec.docu.parser.main.BpmnParser
 import org.apache.maven.plugin.AbstractMojo
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
