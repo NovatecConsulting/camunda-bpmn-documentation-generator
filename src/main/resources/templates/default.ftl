@@ -11,8 +11,10 @@ It should contain the id and name of a bpmn object.
     <li>Name: ${bpmn.name}</li>
     <li>Version: ${bpmn.version}</li>
     <li>Documentation: ${bpmn.documentation}</li>
-    <img src="../${bpmn.image}">
 </ul>
+
+<#if bpmn.image??><img src="./images/${bpmn.image}"></#if>
+
 
 </body>
 </html>
