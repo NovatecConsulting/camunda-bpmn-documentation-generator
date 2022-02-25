@@ -15,7 +15,7 @@ object BpmnParser {
      * @param bpmnImagePath path to a manually generated image of the BPMN diagram that will be included in the generated output.
      * Viable formats: png, svg.
      */
-    fun parseBpmnFile(bpmnFile: File, bpmnImagePath: String): BpmnObject {
+    fun parseBpmnFile(bpmnFile: File, bpmnImagePath: String?): BpmnObject {
         val bpmnModelInstance = Bpmn.readModelFromFile(bpmnFile)
         val model = bpmnModelInstance.model
         val process: Process = bpmnModelInstance.getModelElementsByType(model.getType(Process::class.java)).stream()

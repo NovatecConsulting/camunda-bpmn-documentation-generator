@@ -13,7 +13,7 @@ abstract class BpmnObject(
     val name: String,
     val version: String,
     val documentation: String? = null,
-    val image: String
+    val image: String?
 ) {
     override fun toString(): String {
         return "${javaClass.name}[id=$id, name=$name, version=$version, documentation=$documentation, image=$image]"
