@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1nptqcm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="SuperProzessProcess" name="SuperProzess" isExecutable="true" camunda:versionTag="1.0">
+    <bpmn:documentation>Hier steht eine Dokumentation</bpmn:documentation>
+    <bpmn:startEvent id="GenerationOfProcessDocumentationRequestedStartEvent" name="Generation of process documentation requested">
+      <bpmn:outgoing>Flow_0mp6cca</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="RunIntegratedDevelopmentEnvironmentTask" name="Run Integrated Development Environment">
+      <bpmn:incoming>Flow_0mp6cca</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yb16gj</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0mp6cca" sourceRef="GenerationOfProcessDocumentationRequestedStartEvent" targetRef="RunIntegratedDevelopmentEnvironmentTask" />
+    <bpmn:endEvent id="GenerationOfProcessDocumentationAccomplishedEndEvent" name="Generation of process documentation accomplished">
+      <bpmn:incoming>Flow_0beenx0</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0yb16gj" sourceRef="RunIntegratedDevelopmentEnvironmentTask" targetRef="WriteCodeCallActivity" />
+    <bpmn:sequenceFlow id="Flow_0hibd8j" sourceRef="WriteCodeCallActivity" targetRef="ReviewCodeCallActivity" />
+    <bpmn:callActivity id="WriteCodeCallActivity" name="Write Code" calledElement="CodeWritingProcess">
+      <bpmn:documentation>This is the documentation for the CallActivity "Write Code"</bpmn:documentation>
+      <bpmn:incoming>Flow_0yb16gj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hibd8j</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0beenx0" sourceRef="ReviewCodeCallActivity" targetRef="GenerationOfProcessDocumentationAccomplishedEndEvent" />
+    <bpmn:callActivity id="ReviewCodeCallActivity" name="Review Code" calledElement="CodeReviewProcess">
+      <bpmn:documentation>This is the documentation for the CallActivity "Review Code"</bpmn:documentation>
+      <bpmn:incoming>Flow_0hibd8j</bpmn:incoming>
+      <bpmn:outgoing>Flow_0beenx0</bpmn:outgoing>
+    </bpmn:callActivity>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="SuperProzessProcess">
+      <bpmndi:BPMNEdge id="Flow_0hibd8j_di" bpmnElement="Flow_0hibd8j">
+        <di:waypoint x="540" y="117" />
+        <di:waypoint x="590" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yb16gj_di" bpmnElement="Flow_0yb16gj">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="440" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mp6cca_di" bpmnElement="Flow_0mp6cca">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0beenx0_di" bpmnElement="Flow_0beenx0">
+        <di:waypoint x="690" y="117" />
+        <di:waypoint x="792" y="117" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="704" y="99" width="74" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="GenerationOfProcessDocumentationRequestedStartEvent">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="162" y="142" width="73" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0veozgy_di" bpmnElement="RunIntegratedDevelopmentEnvironmentTask">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1r6jka4_di" bpmnElement="WriteCodeCallActivity">
+        <dc:Bounds x="440" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_193bg2b_di" bpmnElement="GenerationOfProcessDocumentationAccomplishedEndEvent">
+        <dc:Bounds x="792" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="775" y="142" width="73" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rzl79e_di" bpmnElement="ReviewCodeCallActivity">
+        <dc:Bounds x="590" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

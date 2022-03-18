@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="info.novatec.cbdg.plugin.GenerateMojoTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-02-18T14:59:56" hostname="NB210615AHS" time="1.234">
+  <properties/>
+  <testcase name="Generate with Non-Default parameters()" classname="info.novatec.cbdg.plugin.GenerateMojoTest" time="1.234"/>
+  <system-out><![CDATA[[INFO] Generating documentation for file /Users/ahs/Desktop/Novatec/Freitag/cbdg/camunda-bpmn-documentation-generator/src/test/resources/bpmn/diagram1.bpmn
+[INFO] Using template /Users/ahs/Desktop/Novatec/Freitag/cbdg/camunda-bpmn-documentation-generator/src/test/resources/templates/test.ftl
+[INFO] Output report into path /Users/ahs/Desktop/Novatec/Freitag/cbdg/camunda-bpmn-documentation-generator/build/test-results/cbdg/html
+[INFO] /Users/ahs/Desktop/Novatec/Freitag/cbdg/camunda-bpmn-documentation-generator/build/test-results/cbdg/html/diagram1.html
+]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>

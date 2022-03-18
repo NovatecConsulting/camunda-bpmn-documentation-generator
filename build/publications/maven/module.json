@@ -1,0 +1,111 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "info.novatec",
+    "module": "camunda-bpmn-documentation-generator",
+    "version": "1.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8",
+      "buildId": "23zhe2nuz5follvl67lqmhw5du"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.31"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "camunda-bpmn-documentation-generator-1.0-SNAPSHOT.jar",
+          "url": "camunda-bpmn-documentation-generator-1.0-SNAPSHOT.jar",
+          "size": 40832,
+          "sha512": "2bdf7f8ec521023b9511053cfeb9e43226bdf7f16540f7c37e08b1e2f2f42f27e998dd48edc941f11dee7581130a39c35a27d96441b054972880945f6784391c",
+          "sha256": "0d22811c88ed90b3891b0cfd405ffd1df95fcaccad376b61c8056cca917ac367",
+          "sha1": "5753a8af044591cfd9e53a6c27dd3850c9912dae",
+          "md5": "13f83ac08a21daa3ef8f932bb534b4b4"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.apache.maven",
+          "module": "maven-plugin-api",
+          "version": {
+            "requires": "3.8.4"
+          }
+        },
+        {
+          "group": "org.apache.maven",
+          "module": "maven-core",
+          "version": {
+            "requires": "3.8.4"
+          }
+        },
+        {
+          "group": "org.camunda.bpm.model",
+          "module": "camunda-bpmn-model",
+          "version": {
+            "requires": "7.16.0"
+          }
+        },
+        {
+          "group": "org.freemarker",
+          "module": "freemarker",
+          "version": {
+            "requires": "2.3.31"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.31"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "camunda-bpmn-documentation-generator-1.0-SNAPSHOT.jar",
+          "url": "camunda-bpmn-documentation-generator-1.0-SNAPSHOT.jar",
+          "size": 40832,
+          "sha512": "2bdf7f8ec521023b9511053cfeb9e43226bdf7f16540f7c37e08b1e2f2f42f27e998dd48edc941f11dee7581130a39c35a27d96441b054972880945f6784391c",
+          "sha256": "0d22811c88ed90b3891b0cfd405ffd1df95fcaccad376b61c8056cca917ac367",
+          "sha1": "5753a8af044591cfd9e53a6c27dd3850c9912dae",
+          "md5": "13f83ac08a21daa3ef8f932bb534b4b4"
+        }
+      ]
+    }
+  ]
+}

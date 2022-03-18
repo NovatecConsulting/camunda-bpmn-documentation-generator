@@ -30,7 +30,7 @@ jobs:
       - name: clean and build camunda-bpmn-documentation-generator plugin
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: clean spotlessCheck build buildPluginDescriptor publishToMavenLocal
+          arguments: clean spotlessCheck dokkaHtml build buildPluginDescriptor publishToMavenLocal
           build-root-directory: ./camunda-bpmn-documentation-generator
       - name: git checkout test project
         uses: actions/checkout@v2
@@ -39,3 +39,5 @@ jobs:
           path: cbdg-maven-test
       - name: build cbdg-maven-test
         run: cd ./cbdg-maven-test; mvn clean install
+      - name: publish docu
+        run: cp -R build/dokka/html docs/; rm -r build/

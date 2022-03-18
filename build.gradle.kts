@@ -60,6 +60,10 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+tasks.dokkaHtml.configure {
+    outputDirectory.set(file("docs"))
+}
+
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
         ktlint("0.38.0")

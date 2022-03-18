@@ -2,6 +2,9 @@ import info.novatec.cbdg.helper.CommandLineHelper.Companion.runCommand
 import info.novatec.docu.BpmnParser
 import java.io.File
 
+/**
+ * blabla
+ */
 fun main() {
     val bpmnPath = "src/main/resources/bpmn/"
     val bpmnFile = "diagram1.bpmn"

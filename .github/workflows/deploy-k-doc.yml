@@ -1,16 +1,23 @@
-name: Deploy Javadoc
-
-on:
-  push:
-    branches:
-      - CBDG-37
-
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy JavaDoc 🚀
-        uses: MathieuSoysal/Javadoc-publisher.yml@v2.0.3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          java-version: 17
+#name: Deploy Kotlin Doc
+#on:
+#  push:
+#    branches: [ CBDG-37 ]
+#jobs:
+#  publish:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2.3.4
+#        with:
+#          persist-credentials: false
+#      - name: Set up JDK
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 14
+#      - name: Build documentation
+#        run: ./gradlew dokkaHtml; ./gradlew build
+#      - name: Publish documentation
+#        uses: JamesIves/github-pages-deploy-action@releases/v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          BRANCH: CBDG-37
+#          FOLDER: 'build/dokka/html'
