@@ -3,6 +3,9 @@ package info.novatec.cbdg.models
 import info.novatec.cbdg.models.elements.BpmnElement
 import info.novatec.cbdg.models.elements.CallActivity
 
+/**
+ * A data class to hold information about a specific process inside a bpmn diagram.
+ */
 class BpmnProcess(
     id: String,
     name: String,
