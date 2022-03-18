@@ -3,13 +3,12 @@ package info.novatec.cbdg.models
 import info.novatec.cbdg.models.elements.CallActivity
 
 /**
- * A data class to hold information extracted from the BPMN input model.
- * @param id the ID of the BPMN object.
- * @param name the name of the BPMN object, not necessarily equal to the ID.
- * @param version the version tag of the BPMN object
- * @param documentation the element documentation of the BPMN object
- * @param image the name of the generated image of the BPMN process.
- * @param callActivityList a list of all CallActivities in the BPMN object
+ * An abstract data class to hold information extracted from the BPMN input model.
+ * @property id the ID of the BPMN object.
+ * @property name the name of the BPMN object, not necessarily equal to the ID.
+ * @property version the version tag of the BPMN object
+ * @property documentation the element documentation of the BPMN object
+ * @property image the name of the generated image of the BPMN process.
  */
 abstract class BpmnObject(
     val id: String,

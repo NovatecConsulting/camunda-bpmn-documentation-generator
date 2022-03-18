@@ -12,6 +12,9 @@ import java.nio.file.Files
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 
+/**
+ * Mojo - Class for cbdg-plugin. Calls by Maven-command 'mvn cbdg:generate'.
+ */
 @Mojo(name = "generate")
 class GenerateMojo : AbstractMojo() {
 
@@ -23,9 +26,15 @@ class GenerateMojo : AbstractMojo() {
     @Parameter(property = "templateFile", defaultValue = "\${project.build.directory}/classes/templates/default.ftl")
     lateinit var templateFile: File
 
+    /**
+     * Directory with bpmn-files. Default is '{project.basedir}/src/main/resources/bpmn'
+     */
     @Parameter(property = "camundaBpmnDir", defaultValue = "\${project.basedir}/src/main/resources/bpmn")
     lateinit var camundaBpmnDir: File
 
+    /**
+     * Target-directory fot generated content. Default is '{project.build.directory}/cbdg/html'
+     */
     @Parameter(property = "resultOutputDir", defaultValue = "\${project.build.directory}/cbdg/html")
     lateinit var resultOutputDir: File
 

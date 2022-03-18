@@ -8,7 +8,7 @@ plugins {
     id("com.liferay.maven.plugin.builder") version "1.2.8"
     id("org.jetbrains.kotlin.jvm") version "1.5.31"
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
-    id("org.jetbrains.dokka") version "1.5.30"
+    id("org.jetbrains.dokka") version "1.7.0"
 }
 
 repositories {
@@ -30,7 +30,7 @@ dependencies {
     compileOnly("org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.1")
     // https://mvnrepository.com/artifact/org.freemarker/freemarker
     implementation(group = "org.freemarker", name = "freemarker", version = "2.3.31")
-    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.5.30")
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
