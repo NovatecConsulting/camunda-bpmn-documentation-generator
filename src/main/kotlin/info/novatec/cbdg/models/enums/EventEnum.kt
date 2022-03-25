@@ -6,8 +6,8 @@ enum class EventEnum(val eventType: String) {
     TIMER("timerEventDefinition"),
     SIGNAL("signalEventDefinition"),
     CONDITIONAL("conditionalEventDefinition"),
-    ESCALATION(""),
-    ERROR(""),
-    COMPENSATION(""),
-    TERMINATE("")
+    ESCALATION("escalationEventDefinition"),
+    ERROR("errorEventDefinition"),
+    COMPENSATION("compensateEventDefinition"),
+    TERMINATE("terminateEventDefinition")
 }
