@@ -2,6 +2,7 @@ package info.novatec.docu
 
 import info.novatec.cbdg.models.BpmnObject
 import info.novatec.cbdg.models.BpmnProcess
+import info.novatec.cbdg.models.elements.EndEvent
 import info.novatec.cbdg.models.elements.StartEvent
 import info.novatec.cbdg.models.enums.EventEnum
 import org.camunda.bpm.model.bpmn.Bpmn
@@ -19,7 +20,10 @@ object BpmnParser {
      * @param bpmnImagePath path to a manually generated image of the BPMN diagram that will be included in the generated output.
      * Viable formats: png, svg.
      */
-    fun parseBpmnFile(bpmnFile: File, bpmnImagePath: String?): BpmnObject {
+    fun parseBpmnFile(
+        bpmnFile: File,
+        bpmnImagePath: String?
+    ): BpmnObject {
         val bpmnModelInstance = Bpmn.readModelFromFile(bpmnFile)
         val model = bpmnModelInstance.model
         val process: Process = bpmnModelInstance.getModelElementsByType(model.getType(Process::class.java)).stream()
@@ -34,6 +38,7 @@ object BpmnParser {
         )
 
         result.elements.addAll(determineStartEvents(process))
+        result.elements.addAll(determineEndEvents(process))
 
         return result
     }
@@ -44,6 +49,21 @@ object BpmnParser {
         return process.flowElements.filter { it.elementType.typeName.equals("startEvent") }
             .map {
                 StartEvent(
+                    it.id,
+                    it.name ?: "",
+                    process.camundaVersionTag,
+                    it.documentations.stream().findFirst().orElse(null)?.textContent.toString(),
+                    mapEventDefinition(it)
+                )
+            }
+    }
+
+    private fun determineEndEvents(
+        process: Process
+    ): List<EndEvent> {
+        return process.flowElements.filter { it.elementType.typeName.equals("endEvent") }
+            .map {
+                EndEvent(
                     it.id,
                     it.name ?: "",
                     process.camundaVersionTag,
