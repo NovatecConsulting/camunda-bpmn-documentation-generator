@@ -7,7 +7,7 @@ plugins {
     id("com.diffplug.spotless") version "5.14.0"
     id("com.liferay.maven.plugin.builder") version "1.2.8"
     id("org.jetbrains.kotlin.jvm") version "1.5.31"
-    id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
+    // id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
     id("org.jetbrains.dokka") version "1.7.0"
 }
 
@@ -60,7 +60,7 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+/*configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
         ktlint("0.38.0")
     }
@@ -68,4 +68,4 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         target("*.gradle.kts")
         ktlint()
     }
-}
+}*/

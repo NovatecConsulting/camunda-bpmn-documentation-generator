@@ -9,8 +9,10 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
+import kotlin.io.path.exists
 
 /**
  * Mojo - Class for cbdg-plugin. Calls by Maven-command 'mvn cbdg:generate'.
@@ -38,8 +40,11 @@ class GenerateMojo : AbstractMojo() {
     @Parameter(property = "resultOutputDir", defaultValue = "\${project.build.directory}/cbdg/html")
     lateinit var resultOutputDir: File
 
-    @Parameter(property = "bpmnDiagramImageFile")
-    var bpmnDiagramImageFile: File? = null
+    /**
+     * Directory with the images of bpmn-files. Default is '{project.basedir}/src/main/resources/images'
+     */
+    @Parameter(property = "bpmnDiagramImageDir", defaultValue = "\${project.basedir}/src/main/resources/images")
+    var bpmnDiagramImageDir: File? = null
 
     override fun execute() {
         if (templateFile.name.equals("default.ftl")) {
@@ -49,7 +54,15 @@ class GenerateMojo : AbstractMojo() {
         camundaBpmnDir.listFiles()?.forEach {
             log.info("Generating documentation for file ${it.absolutePath}")
             log.info("Using template ${templateFile.absolutePath}")
-            val bpmnObject = BpmnParser.parseBpmnFile(it, bpmnDiagramImageFile?.name)
+
+            val imageSrcPath = Path("${bpmnDiagramImageDir?.absolutePath}/${it.nameWithoutExtension}.png")
+            val imageTargetPath = Path("${resultOutputDir.absolutePath}/images/${it.nameWithoutExtension}.png")
+            imageTargetPath.parent.createDirectories()
+            if (imageSrcPath.exists()) {
+                Files.copy(imageSrcPath, imageTargetPath, StandardCopyOption.REPLACE_EXISTING)
+            }
+
+            val bpmnObject = BpmnParser.parseBpmnFile(it, "${it.nameWithoutExtension}.png")
             FreeMarkerService.writeTemplate(
                 bpmnObject,
                 templateFile.name,
@@ -58,11 +71,6 @@ class GenerateMojo : AbstractMojo() {
                 setDirectoryForTemplateLoading(templateFile.parentFile)
             }
             log.info("Output report into path ${resultOutputDir.absolutePath}")
-            bpmnDiagramImageFile?.let {
-                val imagePath = Path("${resultOutputDir.absolutePath}/images/${it.name}")
-                imagePath.parent.createDirectories()
-                Files.copy(it.toPath(), imagePath)
-            }
         } ?: throw FileNotFoundException("${camundaBpmnDir.absolutePath} don't exist.")
         resultOutputDir.listFiles()?.forEach {
             log.info(it.absolutePath)
