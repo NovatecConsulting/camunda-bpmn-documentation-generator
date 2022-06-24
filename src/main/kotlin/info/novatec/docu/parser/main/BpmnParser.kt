@@ -4,9 +4,11 @@ import info.novatec.cbdg.models.BpmnObject
 import info.novatec.cbdg.models.BpmnProcess
 import info.novatec.cbdg.models.elements.EndEvent
 import info.novatec.cbdg.models.elements.StartEvent
+import info.novatec.cbdg.models.elements.Task
 import info.novatec.cbdg.models.enums.EventEnum
 import info.novatec.docu.parser.element.CallActivityParser.parseToCallActivityList
 import org.camunda.bpm.model.bpmn.Bpmn
+import org.camunda.bpm.model.bpmn.instance.Documentation
 import org.camunda.bpm.model.bpmn.instance.EventDefinition
 import org.camunda.bpm.model.bpmn.instance.FlowElement
 import org.camunda.bpm.model.bpmn.instance.Process
@@ -41,6 +43,7 @@ object BpmnParser {
 
         result.elements.addAll(determineStartEvents(process))
         result.elements.addAll(determineEndEvents(process))
+        result.tasks = determineTasks(process)
 
         return result
     }
@@ -79,4 +82,16 @@ object BpmnParser {
         EventEnum.values().asList().stream().filter { event: EventEnum ->
             it.getChildElementsByType(EventDefinition::class.java).stream().anyMatch { event.eventType == it.elementType.typeName }
         }.findFirst().orElseGet { EventEnum.UNSPECIFIED }
+
+    private fun determineTasks(process: Process): List<Task> {
+        return process.flowElements.filterIsInstance<org.camunda.bpm.model.bpmn.instance.Task>()
+            .map {
+                Task(
+                    it.id,
+                    it.name ?: "",
+                    process.camundaVersionTag,
+                    it.documentations.joinToString("; ", transform = Documentation::getTextContent)
+                )
+            }
+    }
 }
