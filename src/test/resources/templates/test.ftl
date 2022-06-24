@@ -30,5 +30,22 @@
                 </tr>
             </#list>
         </table>
+        <h2>Tasks</h2>
+        <table>
+            <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Version</th>
+            <th>Documentation</th>
+            </thead>
+            <#list bpmn.tasks as item>
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.version}</td>
+                    <td>${item.documentation}</td>
+                </tr>
+            </#list>
+        </table>
     </body>
 </html>
