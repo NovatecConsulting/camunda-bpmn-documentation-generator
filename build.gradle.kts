@@ -4,38 +4,27 @@
 plugins {
     java
     `maven-publish`
-    id("com.diffplug.spotless") version "5.14.0"
-    id("com.liferay.maven.plugin.builder") version "1.2.8"
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
-    // id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
-    id("org.jetbrains.dokka") version "1.7.0"
+    id("com.diffplug.spotless") version "6.12.0"
+    id("org.jetbrains.kotlin.jvm") version "1.8.10"
+    id("org.jlleitschuh.gradle.ktlint") version "11.2.0"
+    id("org.jetbrains.dokka") version "1.7.20"
 }
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri("https://repo.maven.apache.org/maven2/")
-    }
+    mavenCentral()
 }
 
 group = "info.novatec"
-version = "1.0-SNAPSHOT"
+version = "2.0-SNAPSHOT"
 description = "camunda-bpmn-documentation-generator"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 dependencies {
-    implementation("org.apache.maven:maven-plugin-api:3.8.4")
-    implementation("org.apache.maven:maven-core:3.8.4")
-    implementation("org.camunda.bpm.model:camunda-bpmn-model:7.16.0")
-    compileOnly("org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.1")
-    // https://mvnrepository.com/artifact/org.freemarker/freemarker
-    implementation(group = "org.freemarker", name = "freemarker", version = "2.3.31")
-    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.0")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-    testImplementation("org.apache.maven:maven-compat:3.8.4")
-    testImplementation("org.apache.maven.plugin-testing:maven-plugin-testing-harness:3.3.0")
+    implementation("org.camunda.bpm.model:camunda-bpmn-model:7.18.0")
+    compileOnly("org.apache.maven.plugin-tools:maven-plugin-annotations:3.7.1")
+    implementation("org.freemarker:freemarker:2.3.32")
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
 }
 
 publishing {
@@ -44,28 +33,28 @@ publishing {
     }
 }
 
-tasks.named("buildPluginDescriptor") {
-    setProperty("sourceDir", "src/main/kotlin")
-    setProperty("classesDir", "build/classes/kotlin/main")
-    setProperty("goalPrefix", "cbdg")
-    setProperty("pomArtifactId", project.description)
-    setProperty("pomVersion", project.version)
+tasks.named("build") {
+    dependsOn("spotlessApply")
 }
 
-tasks.named("build") {
-    dependsOn("buildPluginDescriptor")
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "17"
+    }
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-/*configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
-        ktlint("0.38.0")
+        target("**/*.kt")
+        ktlint()
     }
     kotlinGradle {
         target("*.gradle.kts")
         ktlint()
     }
-}*/
+}

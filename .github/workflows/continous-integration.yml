@@ -25,13 +25,20 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
-          java-version: '14'
+          java-version: '17'
           cache: 'gradle'
-      - name: clean and build camunda-bpmn-documentation-generator plugin
+      - name: clean and build camunda-bpmn-documentation-generator
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: clean spotlessCheck build buildPluginDescriptor publishToMavenLocal
+          arguments: clean build publishToMavenLocal
           build-root-directory: ./camunda-bpmn-documentation-generator
+      - name: git checkout maven plugin project
+        uses: actions/checkout@v2
+        with:
+          repository: NovatecConsulting/cbdg-maven-plugin
+          path: cbdg-maven-plugin
+      - name: build cbdg-maven-plugin
+        run: cd ./cbdg-maven-plugin; mvn clean install
       - name: git checkout test project
         uses: actions/checkout@v2
         with:
