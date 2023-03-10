@@ -14,7 +14,7 @@ import org.camunda.bpm.model.bpmn.instance.FlowElement
 import org.camunda.bpm.model.bpmn.instance.Process
 import java.io.File
 
-object BpmnParser {
+class BpmnParser {
 
     /**
      * Parses a bpmn file into a BpmnObject.
