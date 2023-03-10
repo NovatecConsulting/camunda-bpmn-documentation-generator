@@ -8,7 +8,7 @@ fun main() {
     val bpmnFile = "TestDiagram.bpmn"
     val bpmnFileAsPng = "TestDiagram.png"
 
-    val bpmnObject = BpmnParser.parseBpmnFile(
+    val bpmnObject = BpmnParser().parseBpmnFile(
         File(bpmnPath + bpmnFile),
         bpmnPath + bpmnFileAsPng
     )

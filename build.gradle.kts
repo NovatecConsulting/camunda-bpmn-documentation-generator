@@ -4,10 +4,11 @@
 plugins {
     java
     `maven-publish`
+    `java-gradle-plugin`
     id("com.diffplug.spotless") version "6.12.0"
     id("org.jetbrains.kotlin.jvm") version "1.8.10"
     id("org.jlleitschuh.gradle.ktlint") version "11.2.0"
-    id("org.jetbrains.dokka") version "1.7.20"
+    id("org.jetbrains.dokka") version "1.9.10"
 }
 
 repositories {
@@ -22,9 +23,11 @@ java.sourceCompatibility = JavaVersion.VERSION_17
 
 dependencies {
     implementation("org.camunda.bpm.model:camunda-bpmn-model:7.18.0")
-    compileOnly("org.apache.maven.plugin-tools:maven-plugin-annotations:3.7.1")
     implementation("org.freemarker:freemarker:2.3.32")
-    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
+    implementation("org.slf4j:slf4j-api:2.0.7")
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.10")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.1")
 }
 
 publishing {
@@ -56,5 +59,14 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlinGradle {
         target("*.gradle.kts")
         ktlint()
+    }
+}
+
+gradlePlugin {
+    plugins {
+        create("CamundaBpmnDocumentationGenerator") {
+            id = "info.novatec.cbdg"
+            implementationClass = "info.novatec.cbdg.plugin.CamundaBpmnDocumentationGenerator"
+        }
     }
 }
