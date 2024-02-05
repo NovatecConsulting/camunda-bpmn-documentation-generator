@@ -6,7 +6,7 @@ plugins {
     `maven-publish`
     `java-gradle-plugin`
     id("com.diffplug.spotless") version "6.12.0"
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
+    id("org.jetbrains.kotlin.jvm") version "1.9.22"
     id("org.jlleitschuh.gradle.ktlint") version "11.2.0"
     id("org.jetbrains.dokka") version "1.9.10"
 }
@@ -17,7 +17,7 @@ repositories {
 }
 
 group = "info.novatec"
-version = "2.0-SNAPSHOT"
+version = "2.0"
 description = "camunda-bpmn-documentation-generator"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
