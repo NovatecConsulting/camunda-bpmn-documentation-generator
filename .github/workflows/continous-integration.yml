@@ -37,7 +37,6 @@ jobs:
         with:
           repository: NovatecConsulting/cbdg-maven-plugin
           path: cbdg-maven-plugin
-          ref: CBDG-51
       - name: build cbdg-maven-plugin
         run: cd ./cbdg-maven-plugin; mvn clean install
       - name: git checkout test project
@@ -45,7 +44,6 @@ jobs:
         with:
           repository: NovatecConsulting/cbdg-maven-test
           path: cbdg-maven-test
-          ref: CBDG-51
       - name: build cbdg-maven-test
         run: cd ./cbdg-maven-test; mvn clean install
       - name: clean and build cbdg-test
