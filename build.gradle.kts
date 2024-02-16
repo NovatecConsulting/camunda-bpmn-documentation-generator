@@ -17,7 +17,7 @@ repositories {
 }
 
 group = "info.novatec"
-version = "2.0"
+version = "3.0-SNAPSHOT"
 description = "camunda-bpmn-documentation-generator"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
